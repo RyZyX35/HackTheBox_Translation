@@ -1,0 +1,54 @@
+// ==UserScript==
+// @name         HTB Academy - Google Translate Fix (Span Trick)
+// @namespace    http://tampermonkey.net/
+// @version      1.0
+// @description  Translate Hack The Box Academy without breaking the layout.
+// @author       RyZyX35
+// @match        https://academy.hackthebox.com/*
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=hackthebox.com
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    const convertCodeToSpan = () => {
+        document.querySelectorAll('code:not(.converted-to-span)').forEach(codeBlock => {
+
+
+            if (codeBlock.closest('pre')) return;
+            const span = document.createElement('span');
+
+            Array.from(codeBlock.attributes).forEach(attr => {
+                if (attr.name !== 'dir') {
+                    span.setAttribute(attr.name, attr.value);
+                }
+            });
+
+            span.innerHTML = codeBlock.innerHTML;
+            span.classList.add('converted-to-span');
+            span.style.fontFamily = 'ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace';
+            codeBlock.parentNode.replaceChild(span, codeBlock);
+        });
+    };
+
+
+    convertCodeToSpan();
+
+
+    const observer = new MutationObserver((mutations) => {
+        let shouldUpdate = false;
+        for (const mutation of mutations) {
+            if (mutation.addedNodes.length > 0) {
+                shouldUpdate = true;
+                break;
+            }
+        }
+        if (shouldUpdate) {
+            convertCodeToSpan();
+        }
+    });
+
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+})();
