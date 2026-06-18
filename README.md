@@ -27,3 +27,5 @@ Instead of trying to block the translation, this script uses a "stealth" approac
 
 ### With the script (Smooth and clean translation):
 <img width="1439" height="709" alt="image" src="https://github.com/user-attachments/assets/01f9df66-a90d-4e6c-bb18-e4e365287d53" />
+
+**Requirement:** Active permission to execute user scripts : https://www.tampermonkey.net/faq.php?q=Q209#Q209
