@@ -1,4 +1,4 @@
-**On June 25, 2026, an HTB update added the ability to integrate translations directly through their website, making this script USEFUL ONLY if your language is available via Google Translate but not on HTB.**
+**On June 25, 2026, an HTB update added translation directly through their website, making this script USEFUL ONLY if your language is available via Google Translate but not on HTB.**
 
 
 # HTB Academy - Google Translate Fix
